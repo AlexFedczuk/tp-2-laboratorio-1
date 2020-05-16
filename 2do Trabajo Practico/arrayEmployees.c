@@ -38,10 +38,10 @@ int mostrarMenu()
 {
     int opcion;
 
-    printf("\n1. ALTAS");//Se debe permitir ingresar un empleado calculando automáticamente el número de Id. El resto de los campos se le pedirá al usuario.
-    printf("\n2. MODIFICAR");//Se ingresará el Número de Id, permitiendo modificar: o Nombre o Apellido o Salario o Sector
-    printf("\n3. BAJA");//Se ingresará el Número de Id y se eliminará el empleado del sistema.
-    printf("\n4. INFORMAR");//En esta opcion se debe mostrar la informacion de abajo.
+    printf("\n1. ALTAS");
+    printf("\n2. MODIFICAR");
+    printf("\n3. BAJA");
+    printf("\n4. INFORMAR");
     printf("\nElija una opcion: ");
     fflush(stdin);
     scanf("%d",&opcion);
@@ -131,7 +131,6 @@ void requestEmployeeLastName(char string[])
     fflush(stdin);
     gets(aux);
     strcpy(string,aux);
-    //printf("\napellido: %s",string);
 }
 
 float requestEmployeeSalary()
@@ -149,7 +148,6 @@ float requestEmployeeSalary()
         }
     }
     while(salary<0);
-    //printf("\nsalario: %.2f",salary);
 
     return salary;
 }
@@ -168,7 +166,6 @@ int requestEmployeeSector()
         }
     }
     while(sector<0);
-    //printf("\nsector: %d",sector);
 
     return sector;
 }
@@ -275,13 +272,14 @@ int findEmployeeById(eEmployee list[], int len,int id)
 {
     int idPosition=-1;
 
-    if(list!=NULL && (len>0 && len<1001) && id>0)
+    if(list!=NULL && (len>0 && len<1000) && id>0)
     {
         for(int i=0;i<len;i++)
         {
             if(list[i].id==id)
             {
                 idPosition=i;
+                break;
             }
         }
     }
@@ -328,18 +326,25 @@ int printEmployees(eEmployee list[], int len)
     if(list!=NULL && (len>0 && len<1000))
     {
         printf("\n   1.   ***** Listado de Empleados *****\n\n");
-        printf(" ID       APELLIDO       NOMBRE     SALARIO      SECTOR");
+        printf("\tID\tAPELLIDO\tNOMBRE\tSALARIO\tSECTOR");
 
         for(int i=0;i<len;i++)
         {
             if(list[i].isEmpty==OCCUP)
             {
-                printf("\n%04d    %10s   %10s      %.2f      %d\n",list[i].id,list[i].lastName,list[i].name,list[i].salary,list[i].sector);
-                /*printf("\n%d",list[i].id);
-                printf("%s",list[i].lastName);
-                printf("%s",list[i].name);
-                printf("%.2f",list[i].salary);
-                printf("%d\n",list[i].sector);*/
+                printf("\n%04d    %s   %10s  %10.2f           %d\n",list[i].id,list[i].lastName,list[i].name,list[i].salary,list[i].sector);
+
+                /*printf("\n\t%04d",list[i].id);
+                printf("\t%3s",list[i].lastName);
+                printf("\t%3s",list[i].name);
+                printf("\t%10.2f",list[i].salary);
+                printf("\t%10d\n",list[i].sector);
+
+                printf("\n%04d",list[i].id);
+                printf("    %s",list[i].lastName);
+                printf("   %10s",list[i].name);
+                printf("  %10.2f",list[i].salary);
+                printf("           %10d\n",list[i].sector);*/
             }
         }
         resultado=0;
@@ -479,14 +484,11 @@ void setAny(eEmployee list[],int len)
 
 void pedirIdModificar(eEmployee list[],int len)
 {
-    eEmployee aux;
     int id;
     int i;
     int opcion;
-    char nombre[51];
+    char name[51];
     char lastName[51];
-    float salary;
-    int sector;
     char respuesta;
 
     printf("\nIngrese el ID del empleado que quierea modificar: ");
@@ -496,52 +498,40 @@ void pedirIdModificar(eEmployee list[],int len)
 
     opcion=mostrarMenuCase2();
 
+    //printf("\nopcion: %d\n",opcion);
+
     do
     {
         switch(opcion)
         {
             case 1:
-
-                /*requestEmployeeName(name);
+                requestEmployeeName(name);
                 strcpy(list[i].name,name);
-                printf("name: %s\n",list[i].name);*/
-
-
-                //printf("ingrese nombre: ");
-                //scanf("%s",&aux.name);
-                //strcpy(aux.name, nombre);
                 break;
 
             case 2:
-                editlastName(list,lastName,i);
-                printf("last name: %s\n",list[i].lastName);
+                requestEmployeeLastName(lastName);
+                strcpy(list[i].lastName,lastName);
                 break;
 
             case 3:
-                salary = editSalary(salary);
-                //list[i].salary = salary;
-                printf("salary: %.2f\n",list[i].salary);
+                printf("\nIngrese el salario del empleado: ");
+                scanf("%f",&list[i].salary);
                 break;
 
             case 4:
-                list[i].sector=editSector(sector);
-                printf("sector: %d\n",list[i].sector);
+                printf("\nIngrese el numero del sector del empleado: ");
+                scanf("%d",&list[i].sector);
                 break;
 
             default:
                 break;
         }
+        printf("\nIngrese 's' para seguir o ingrese cualquier otra tecla para guardar la modificacion realizada: ");
 
-        printf("\nIngrese 's' para seguir 'n' para salir: ");
-        fflush(stdin);
         scanf("%c",&respuesta);
-
     }
     while(respuesta=='s');
-
-    list[i] = aux;
-    printf("hola");
-
 }
 
 int mostrarMenuCase2()
