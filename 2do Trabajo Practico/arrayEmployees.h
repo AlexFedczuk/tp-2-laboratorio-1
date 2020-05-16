@@ -3,10 +3,7 @@
 #include "string.h"
 #include "ctype.h"
 
-//#define TAM 1000//Este es el maximo de empleados que podra ser ingresado en este sistema.
-
-//#ifndef ARRAYEMPLOYEES_H_INCLUDED
-//#define ARRAYEMPLOYEES_H_INCLUDED
+#define TAM 1000
 
 typedef struct
 {
@@ -26,17 +23,26 @@ void harcodear(eEmployee list[],int tam);
 int mostrarMenu();
 
 int initEmployees(eEmployee list[],int len);
+
 void notifyErrorInitEmployees(int obtainedResult);
 
 void performEmployeeDataEntry(eEmployee list[],int len,int contador);
+
 void requestEmployeeName(char string[]);
+
 void requestEmployeeLastName(char string[]);
+
 float requestEmployeeSalary();
+
 int requestEmployeeSector();
+
 int addEmployee(eEmployee list[], int len, int id, char name[],char lastName[],float salary,int sector);
+
 int firstPositionEmpty(eEmployee list[],int len);
+
 void notifyErrorAddEmployee(int obtainedResult);
-//void corroborarPrimerIngreso(eEmployee list[],int len, int flag);
+
+void corroborarPrimerIngreso(eEmployee list[],int len, int flag);
 
 int findEmployeeById(eEmployee list[], int len,int id);
 
@@ -45,7 +51,9 @@ int removeEmployee(eEmployee list[], int len, int id);
 int printEmployees(eEmployee list[], int length);
 
 int sortEmployees(eEmployee list[], int len, int order);
+
 int ordenarAlfabeticamenteAaZ(eEmployee list[],int len);
+
 int ordenarAlfabeticamenteZaA(eEmployee list[],int len);
 
 /**--------------------------------------------------------------------------------------*/
@@ -64,6 +72,8 @@ void editlastName(eEmployee list[],char string[],int i);
 float editSalary(float salary);
 
 int editSector(int sector);
+
+void hacerLaLogicaDelCase2(eEmployee list[],int len,int flag);
 
 /**-----------------------------------------------------------------------------------------*/
 //case 3

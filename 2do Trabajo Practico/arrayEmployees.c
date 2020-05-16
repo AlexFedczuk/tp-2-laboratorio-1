@@ -2,33 +2,6 @@
 #define EMPTY 1
 #define OCCUP 0
 
-/** \brief para hacer pruebas en el programa, hard codeando el array.
- *
- * \param list[] eEmployee
- * \param tam int
- * \return void
- *
- */
-void harcodear(eEmployee list[],int tam)
-{
-    int id[]={1,2,3,4,5,6,7,8,9,10};
-    char nombres[][20]={"Juan","Alberto","Lucia","Martina","Jose","Pepe","Sofia","Miguel","Daniela","Luciana"};
-    char apellidos[][20]={"Lopez","Fernandez","Pepita","Mandela","Andres","Leon","Montania","Garres","Planta","Andres"};
-    float salarios[]={250.5,277.5,4000.77,980.66,486.34,1234.56,98076.88,3456.78,1092.45,2956.1};
-    int sectores[]={1,1,1,2,3,3,2,2,3,1};
-    int isEmpty[]={0,1,0,0,0,0,0,0,0,0};
-
-    for(int i=0;i<tam;i++)
-    {
-        list[i].id=id[i];
-        strcpy(list[i].name,nombres[i]);
-        strcpy(list[i].lastName,apellidos[i]);
-        list[i].salary=salarios[i];
-        list[i].sector=sectores[i];
-        list[i].isEmpty=isEmpty[i];
-    }
-}
-
 /** \brief mostrar el menu del algoritmo, asi tambien capturando la opcion que eliga el usuario.
  *
  * \return el int a capturar, la opcion elegida del menu.
@@ -251,14 +224,14 @@ void notifyErrorAddEmployee(int obtainedResult)
  * \return void
  *
  */
-/*void corroborarPrimerIngreso(eEmployee list[],int len, int flag)
+void corroborarPrimerIngreso(eEmployee list[],int len, int flag)
 {
     if(flag==1)
     {
         initEmployees(list,len);
         flag=0;
-    }
-}*/
+   }
+}
 
 /** \brief find an Employee by Id and returns the index position in array.
  *
@@ -467,8 +440,6 @@ int ordenarAlfabeticamenteZaA(eEmployee list[],int len)
     return resultado;
 }
 
-/**--------------------------------------------------------------------------------------*/
-
 void setAny(eEmployee list[],int len)
 {
     for(int i=0;i<len;i++)
@@ -527,7 +498,7 @@ void pedirIdModificar(eEmployee list[],int len)
             default:
                 break;
         }
-        printf("\nIngrese 's' para seguir o ingrese cualquier otra tecla para guardar la modificacion realizada: ");
+        printf("\nIngrese 's' para seguir o ingrese cualquier otra tecla para confirmar la modificacion realizada: ");
 
         scanf("%c",&respuesta);
     }
@@ -576,7 +547,17 @@ int editSector(int sector)
     return sector;
 }
 
-/**-------------------------------------------------------------------------------------*/
+void hacerLaLogicaDelCase2(eEmployee list[],int len,int flag)
+{
+    if(flag==1)
+    {
+        pedirIdModificar(list,len);
+        //No se estarian realizando las modificaciones...
+    }else
+    {
+        printf("\nError! Se debe realizar la carga de algun empleado para poder usar esta opcion!\n\n");
+    }
+}
 
 int mostrarMenuCase3()
 {
@@ -602,8 +583,6 @@ void hacerLaLogicaDelCase3(eEmployee list[],int len,int flag)
         printf("\nError! Se debe realizar la carga de algun empleado para poder usar esta opcion!\n\n");
     }
 }
-
-/**--------------------------------------------------------------------------------------------*/
 
 int mostrarMenuCase4Punto1()
 {

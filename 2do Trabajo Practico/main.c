@@ -4,8 +4,7 @@
 
 #include "arrayEmployees.h"
 
-//#define TAM 1000//Este es el maximo de empleados que podra ser ingresado en el sistema.
-#define TAM 14//Este TAM es para testear.
+#define TAM 1000
 
 int main()
 {
@@ -22,8 +21,8 @@ int main()
     resultInitEmployees=initEmployees(employee,TAM);
     notifyErrorInitEmployees(resultInitEmployees);
 
-    harcodear(employee,TAM);
-    bandera=1;
+    //harcodear(employee,TAM);
+    //bandera=1;
 
     do
     {
@@ -38,15 +37,7 @@ int main()
                 break;
 
             case 2:
-                if(bandera==1)
-                {
-                    pedirIdModificar(employee,TAM);
-                    //No se estarian realizando las modificaciones...
-                }
-                else
-                {
-                    printf("\nError! Se debe realizar la carga de algun empleado para poder usar esta opcion!\n\n");
-                }
+                hacerLaLogicaDelCase2(employee,TAM,bandera);
                 break;
 
             case 3:

@@ -29,16 +29,16 @@
 	<string.h>
 	"arrayEmployees.h"
 
-1589660419 source:c:\users\pc\desktop\tp-2-laboratorio-1\2do trabajo practico\arrayemployees.c
+1589664622 source:c:\users\pc\desktop\tp-2-laboratorio-1\2do trabajo practico\arrayemployees.c
 	"arrayEmployees.h"
 
-1589656494 c:\users\pc\desktop\tp-2-laboratorio-1\2do trabajo practico\arrayemployees.h
+1589664622 c:\users\pc\desktop\tp-2-laboratorio-1\2do trabajo practico\arrayemployees.h
 	<stdio.h>
 	<stdlib.h>
 	"string.h"
 	"ctype.h"
 
-1589656494 source:c:\users\pc\desktop\tp-2-laboratorio-1\2do trabajo practico\main.c
+1589664420 source:c:\users\pc\desktop\tp-2-laboratorio-1\2do trabajo practico\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
