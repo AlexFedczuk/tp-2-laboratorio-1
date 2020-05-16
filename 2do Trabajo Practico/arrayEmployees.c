@@ -2,6 +2,33 @@
 #define EMPTY 1
 #define OCCUP 0
 
+/** \brief para hacer pruebas en el programa, hard codeando el array.
+ *
+ * \param list[] eEmployee
+ * \param tam int
+ * \return void
+ *
+ */
+void harcodear(eEmployee list[],int tam)
+{
+    int id[]={1,2,3,4,5,6,7,8,9,10};
+    char nombres[][20]={"Juan","Alberto","Lucia","Martina","Jose","Pepe","Sofia","Miguel","Daniela","Luciana"};
+    char apellidos[][20]={"Lopez","Fernandez","Pepita","Mandela","Andres","Leon","Montania","Garres","Planta","Andres"};
+    float salarios[]={250.5,277.5,4000.77,980.66,486.34,1234.56,98076.88,3456.78,1092.45,2956.1};
+    int sectores[]={1,1,1,2,3,3,2,2,3,1};
+    int isEmpty[]={0,1,0,0,0,0,0,0,0,0};
+
+    for(int i=0;i<tam;i++)
+    {
+        list[i].id=id[i];
+        strcpy(list[i].name,nombres[i]);
+        strcpy(list[i].lastName,apellidos[i]);
+        list[i].salary=salarios[i];
+        list[i].sector=sectores[i];
+        list[i].isEmpty=isEmpty[i];
+    }
+}
+
 /** \brief mostrar el menu del algoritmo, asi tambien capturando la opcion que eliga el usuario.
  *
  * \return el int a capturar, la opcion elegida del menu.
@@ -57,6 +84,14 @@ void notifyErrorInitEmployees(int obtainedResult)
     }
 }
 
+/** \brief se encarga de pedir los datos necesarios del empleado
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \param contador int
+ * \return void
+ *
+ */
 void performEmployeeDataEntry(eEmployee list[],int len,int contador)
 {
     int resultAddEmployee;
@@ -85,6 +120,12 @@ void performEmployeeDataEntry(eEmployee list[],int len,int contador)
 
 }
 
+/** \brief se encarga de pedir el nombre del empleado
+ *
+ * \param string[] char
+ * \return void
+ *
+ */
 void requestEmployeeName(char string[])
 {
     char aux[51];
@@ -96,6 +137,12 @@ void requestEmployeeName(char string[])
 
 }
 
+/** \brief se encarga de pedir el apellido del empleado
+ *
+ * \param string[] char
+ * \return void
+ *
+ */
 void requestEmployeeLastName(char string[])
 {
     char aux[51];
@@ -106,6 +153,11 @@ void requestEmployeeLastName(char string[])
     strcpy(string,aux);
 }
 
+/** \brief se encarga de pedir el salario del empleado
+ *
+ * \return float
+ *
+ */
 float requestEmployeeSalary()
 {
     float salary;
@@ -125,6 +177,11 @@ float requestEmployeeSalary()
     return salary;
 }
 
+/** \brief se encarga de pedir el numero del sector del empleado
+ *
+ * \return int
+ *
+ */
 int requestEmployeeSector()
 {
     int sector;
@@ -162,7 +219,7 @@ int addEmployee(eEmployee list[], int len, int id, char name[],char lastName[],f
 
     i=firstPositionEmpty(list,len);
 
-    if(list!=NULL && (len>0 && len<1000) && salary>-1 && sector>0 && i!=-1)
+    if(list!=NULL && (len>0 && len<1001) && salary>-1 && sector>0 && i!=-1)
     {
         list[i].id=id;
         strcpy(list[i].name,name);
@@ -245,7 +302,7 @@ int findEmployeeById(eEmployee list[], int len,int id)
 {
     int idPosition=-1;
 
-    if(list!=NULL && (len>0 && len<1000) && id>0)
+    if(list!=NULL && (len>0 && len<1001) && id>0)
     {
         for(int i=0;i<len;i++)
         {
@@ -272,7 +329,7 @@ int removeEmployee(eEmployee list[], int len, int id)
     int resultado=-1;
     int idPosition;
 
-    if(list!=NULL && (len>0 && len<1000) && id>0)
+    if(list!=NULL && (len>0 && len<1001) && id>0)
     {
         idPosition=findEmployeeById(list,len,id);
 
@@ -296,7 +353,7 @@ int printEmployees(eEmployee list[], int len)
 {
     int resultado=-1;
 
-    if(list!=NULL && (len>0 && len<1000))
+    if(list!=NULL && (len>0 && len<1001))
     {
         printf("\n   1.   ***** Listado de Empleados *****\n\n");
         printf("\tID\tAPELLIDO\tNOMBRE\tSALARIO\tSECTOR");
@@ -337,7 +394,7 @@ int sortEmployees(eEmployee list[], int len, int order)
 {
     int resultado=-1;
 
-    if(list!=NULL && (len>0 && len<1000) && (order>-1 && order<2))
+    if(list!=NULL && (len>0 && len<1001) && (order>-1 && order<2))
     {
         switch(order)
         {
@@ -440,6 +497,13 @@ int ordenarAlfabeticamenteZaA(eEmployee list[],int len)
     return resultado;
 }
 
+/** \brief se encarga de inicializar los elementos del array
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \return void
+ *
+ */
 void setAny(eEmployee list[],int len)
 {
     for(int i=0;i<len;i++)
@@ -453,6 +517,13 @@ void setAny(eEmployee list[],int len)
     }
 }
 
+/** \brief se encarga de realizar las modificaciones pedidas por el usuario
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \return void
+ *
+ */
 void pedirIdModificar(eEmployee list[],int len)
 {
     int id;
@@ -505,6 +576,11 @@ void pedirIdModificar(eEmployee list[],int len)
     while(respuesta=='s');
 }
 
+/** \brief se encarga de mostrar el menu del case 2, del switch del main
+ *
+ * \return int
+ *
+ */
 int mostrarMenuCase2()
 {
     int opcion;
@@ -520,6 +596,14 @@ int mostrarMenuCase2()
     return opcion;
 }
 
+/** \brief se encarga de modificar el valor existente, por uno ingresado por el usuario, en el array(array[indice].name)
+ *
+ * \param list[] eEmployee
+ * \param string[] char
+ * \param i int
+ * \return void
+ *
+ */
 void editName(eEmployee list[],char string[],int i)
 {
 
@@ -527,12 +611,26 @@ void editName(eEmployee list[],char string[],int i)
     strcpy(list[i].name,string);
 }
 
+/** \brief se encarga de modificar el valor existente, por uno ingresado por el usuario, en el array(array[indice].lastName)
+ *
+ * \param list[] eEmployee
+ * \param string[] char
+ * \param i int
+ * \return void
+ *
+ */
 void editlastName(eEmployee list[],char string[],int i)
 {
     requestEmployeeLastName(string);
     strcpy(list[i].lastName,string);
 }
 
+/** \brief se encarga de modificar el valor existente, por uno ingresado por el usuario, en el array(array[indice].salary)
+ *
+ * \param salary float
+ * \return float
+ *
+ */
 float editSalary(float salary)
 {
     salary=requestEmployeeSalary();
@@ -540,6 +638,12 @@ float editSalary(float salary)
     return salary;
 }
 
+/** \brief se encarga de modificar el valor existente, por uno ingresado por el usuario, en el array(array[indice].sector)
+ *
+ * \param sector int
+ * \return int
+ *
+ */
 int editSector(int sector)
 {
     sector=requestEmployeeSector();
@@ -547,10 +651,19 @@ int editSector(int sector)
     return sector;
 }
 
+/** \brief se encarga de realizar la logica necesaria en el main, para que realize un ingreso antes de eligir otra opcion en el menu principal
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \param flag int
+ * \return void
+ *
+ */
 void hacerLaLogicaDelCase2(eEmployee list[],int len,int flag)
 {
     if(flag==1)
     {
+        printEmployees(list,len);
         pedirIdModificar(list,len);
         //No se estarian realizando las modificaciones...
     }else
@@ -559,6 +672,11 @@ void hacerLaLogicaDelCase2(eEmployee list[],int len,int flag)
     }
 }
 
+/** \brief se encarga de mostrar el menu del case 3
+ *
+ * \return int
+ *
+ */
 int mostrarMenuCase3()
 {
     int id;
@@ -569,6 +687,14 @@ int mostrarMenuCase3()
     return id;
 }
 
+/** \brief se encarga de realizar la logica necesaria en el main, para que realize un ingreso antes de eligir otra opcion en el menu principal
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \param flag int
+ * \return void
+ *
+ */
 void hacerLaLogicaDelCase3(eEmployee list[],int len,int flag)
 {
     int id;
@@ -584,6 +710,11 @@ void hacerLaLogicaDelCase3(eEmployee list[],int len,int flag)
     }
 }
 
+/** \brief se encarga de mostrar el menu del case 4, el listado de los empleados ordenados alfabéticamente por Apellido y Sector
+ *
+ * \return int
+ *
+ */
 int mostrarMenuCase4Punto1()
 {
     int opcion;
@@ -606,6 +737,13 @@ int mostrarMenuCase4Punto1()
     return opcion;
 }
 
+/** \brief se encarga de mostrar el menu del case 4, total y promedio de los salarios, y cuántos empleados superan el salario promedio
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \return void
+ *
+ */
 void mostrarMenuCase4Punto2(eEmployee list[],int len)
 {
     float totalSalarios;
@@ -621,6 +759,13 @@ void mostrarMenuCase4Punto2(eEmployee list[],int len)
     printf("\n      La cantidad de empleados que superan el promedio es: %d\n\n",cantidadEmpleadosSuperiorSalario);
 }
 
+/** \brief se encarga de acumular los salarios de los empleados de alta
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \return float
+ *
+ */
 float acumularLosSalarios(eEmployee list[],int len)
 {
     float acumulador;
@@ -643,6 +788,14 @@ float acumularLosSalarios(eEmployee list[],int len)
     return acumulador;
 }
 
+/** \brief se encarga de calcular el promedio del total de salarios de los empleados de alta
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \param totalSalarios float
+ * \return float
+ *
+ */
 float promediarLosSalarios(eEmployee list[],int len,float totalSalarios)
 {
     int contador;
@@ -663,6 +816,14 @@ float promediarLosSalarios(eEmployee list[],int len,float totalSalarios)
     return promedio;
 }
 
+/** \brief se encarga de calcular la cantidad de empleados que tienen un salario superior al promedio, que esten de alta
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \param promedio float
+ * \return int
+ *
+ */
 int calcularLosSalariosSuperioresAlPromedio(eEmployee list[],int len,float promedio)
 {
     int cantidadSalariosSuperiores;
@@ -683,6 +844,14 @@ int calcularLosSalariosSuperioresAlPromedio(eEmployee list[],int len,float prome
     return cantidadSalariosSuperiores;
 }
 
+/** \brief se encarga de realizar la logica necesaria en el main, para que realize un ingreso antes de eligir otra opcion en el menu principal
+ *
+ * \param list[] eEmployee
+ * \param len int
+ * \param flag int
+ * \return void
+ *
+ */
 void hacerLaLogicaDelCase4(eEmployee list[],int len,int flag)
 {
     int order;

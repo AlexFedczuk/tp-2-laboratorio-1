@@ -21,9 +21,6 @@ int main()
     resultInitEmployees=initEmployees(employee,TAM);
     notifyErrorInitEmployees(resultInitEmployees);
 
-    //harcodear(employee,TAM);
-    //bandera=1;
-
     do
     {
         opcion=mostrarMenu();
@@ -45,6 +42,7 @@ int main()
                 break;
 
             case 4:
+                printEmployees(employee,TAM);
                 hacerLaLogicaDelCase4(employee,TAM,bandera);
                 break;
 

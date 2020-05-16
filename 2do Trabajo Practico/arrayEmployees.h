@@ -16,8 +16,6 @@ typedef struct
 
 }eEmployee;
 
-//#endif // ARRAYEMPLOYEES_H_INCLUDED
-
 void harcodear(eEmployee list[],int tam);
 
 int mostrarMenu();
@@ -25,6 +23,9 @@ int mostrarMenu();
 int initEmployees(eEmployee list[],int len);
 
 void notifyErrorInitEmployees(int obtainedResult);
+
+/**-----------------------------------------------------------------------------------------------------*/
+//case 1
 
 void performEmployeeDataEntry(eEmployee list[],int len,int contador);
 
@@ -56,7 +57,7 @@ int ordenarAlfabeticamenteAaZ(eEmployee list[],int len);
 
 int ordenarAlfabeticamenteZaA(eEmployee list[],int len);
 
-/**--------------------------------------------------------------------------------------*/
+/**-----------------------------------------------------------------------------------------------------*/
 //case 2
 
 void setAny(eEmployee list[],int len);
@@ -75,14 +76,14 @@ int editSector(int sector);
 
 void hacerLaLogicaDelCase2(eEmployee list[],int len,int flag);
 
-/**-----------------------------------------------------------------------------------------*/
+/**-----------------------------------------------------------------------------------------------------*/
 //case 3
 
 int mostrarMenuCase3();
 
 void hacerLaLogicaDelCase3(eEmployee list[],int len,int flag);
 
-/**------------------------------------------------------------------------------------------*/
+/**-----------------------------------------------------------------------------------------------------*/
 //Case 4
 
 int mostrarMenuCase4Punto1();
