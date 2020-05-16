@@ -104,16 +104,12 @@ void performEmployeeDataEntry(eEmployee list[],int len,int contador)
     id=contador;
 
     requestEmployeeName(name);
-    printf("\nnombre: %s",name);
 
     requestEmployeeLastName(lastName);
-    printf("\napellido: %s",lastName);
 
     salary=requestEmployeeSalary();
-    printf("\nsalario: %.2f",salary);
 
     sector=requestEmployeeSector();
-    printf("\nsector: %d",sector);
 
     resultAddEmployee=addEmployee(list,len,id,name,lastName,salary,sector);
     notifyErrorAddEmployee(resultAddEmployee);
@@ -356,25 +352,13 @@ int printEmployees(eEmployee list[], int len)
     if(list!=NULL && (len>0 && len<1001))
     {
         printf("\n   1.   ***** Listado de Empleados *****\n\n");
-        printf("\tID\tAPELLIDO\tNOMBRE\tSALARIO\tSECTOR");
+        printf("ID      APELLIDO     NOMBRE     SALARIO        SECTOR");
 
         for(int i=0;i<len;i++)
         {
             if(list[i].isEmpty==OCCUP)
             {
-                printf("\n%04d    %s   %10s  %10.2f           %d\n",list[i].id,list[i].lastName,list[i].name,list[i].salary,list[i].sector);
-
-                /*printf("\n\t%04d",list[i].id);
-                printf("\t%3s",list[i].lastName);
-                printf("\t%3s",list[i].name);
-                printf("\t%10.2f",list[i].salary);
-                printf("\t%10d\n",list[i].sector);
-
-                printf("\n%04d",list[i].id);
-                printf("    %s",list[i].lastName);
-                printf("   %10s",list[i].name);
-                printf("  %10.2f",list[i].salary);
-                printf("           %10d\n",list[i].sector);*/
+                printf("\n%04d    %s   %10s     %10.2f           %d\n",list[i].id,list[i].lastName,list[i].name,list[i].salary,list[i].sector);
             }
         }
         resultado=0;
