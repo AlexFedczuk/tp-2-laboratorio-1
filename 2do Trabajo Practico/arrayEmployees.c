@@ -13,12 +13,10 @@ void harcodear(eEmployee list[],int tam)
 {
     int id[]={1,2,3,4,5,6,7,8,9,10};
     char nombres[][20]={"Juan","Alberto","Lucia","Martina","Jose","Pepe","Sofia","Miguel","Daniela","Luciana"};
-    char apellidos[][20]={"Lopez","Fernandez","Pepita","Mandela","Andres","Leon","Montania","Garres","Planta","Zavala"};
+    char apellidos[][20]={"Lopez","Fernandez","Pepita","Mandela","Andres","Leon","Montania","Garres","Planta","Andres"};
     float salarios[]={250.5,277.5,4000.77,980.66,486.34,1234.56,98076.88,3456.78,1092.45,2956.1};
-    int sectores[]={1,2,3,4,5,6,7,8,9,10};
+    int sectores[]={1,1,1,2,3,3,2,2,3,1};
     int isEmpty[]={0,1,0,0,0,0,0,0,0,0};
-
-    printf("\nAdentro harcode\n");
 
     for(int i=0;i<tam;i++)
     {
@@ -40,13 +38,10 @@ int mostrarMenu()
 {
     int opcion;
 
-    printf("0. HARDCODEAR");
-    printf("\n1. ALTAS\n");//Se debe permitir ingresar un empleado calculando automáticamente el número de Id. El resto de los campos se le pedirá al usuario.
-    printf("2. MODIFICAR\n");//Se ingresará el Número de Id, permitiendo modificar: o Nombre o Apellido o Salario o Sector
-    printf("3. BAJA\n");//Se ingresará el Número de Id y se eliminará el empleado del sistema.
-    printf("4. INFORMAR\n");//En esta opcion se debe mostrar la informacion de abajo.
-    printf("  1. Listado de los empleados ordenados alfabéticamente por Apellido y Sector.\n");
-    printf("  2. Total y promedio de los salarios, y cuántos empleados superan el salario promedio.\n");
+    printf("\n1. ALTAS");//Se debe permitir ingresar un empleado calculando automáticamente el número de Id. El resto de los campos se le pedirá al usuario.
+    printf("\n2. MODIFICAR");//Se ingresará el Número de Id, permitiendo modificar: o Nombre o Apellido o Salario o Sector
+    printf("\n3. BAJA");//Se ingresará el Número de Id y se eliminará el empleado del sistema.
+    printf("\n4. INFORMAR");//En esta opcion se debe mostrar la informacion de abajo.
     printf("\nElija una opcion: ");
     fflush(stdin);
     scanf("%d",&opcion);
@@ -332,17 +327,19 @@ int printEmployees(eEmployee list[], int len)
 
     if(list!=NULL && (len>0 && len<1000))
     {
-        printf("\n      ***** Listado de Empleados *****\n\n");
+        printf("\n   1.   ***** Listado de Empleados *****\n\n");
+        printf(" ID       APELLIDO       NOMBRE     SALARIO      SECTOR");
 
         for(int i=0;i<len;i++)
         {
             if(list[i].isEmpty==OCCUP)
             {
-                printf("      %d",list[i].id);
-                printf("\t      %s",list[i].lastName);
-                printf("\t      %s",list[i].name);
-                printf("\t      %.2f",list[i].salary);
-                printf("\t      %d\n",list[i].sector);
+                printf("\n%04d    %10s   %10s      %.2f      %d\n",list[i].id,list[i].lastName,list[i].name,list[i].salary,list[i].sector);
+                /*printf("\n%d",list[i].id);
+                printf("%s",list[i].lastName);
+                printf("%s",list[i].name);
+                printf("%.2f",list[i].salary);
+                printf("%d\n",list[i].sector);*/
             }
         }
         resultado=0;
@@ -362,7 +359,6 @@ int sortEmployees(eEmployee list[], int len, int order)
 {
     int resultado=-1;
 
-    printf("   1.");
     if(list!=NULL && (len>0 && len<1000) && (order>-1 && order<2))
     {
         switch(order)
@@ -401,27 +397,26 @@ int ordenarAlfabeticamenteAaZ(eEmployee list[],int len)
     {
         for(int j=i+1;j<len;j++)
         {
+            //printf("\nAntes del if de ordenarAlfabeticmneteAaZ\n");
             if(stricmp(list[i].lastName,list[j].lastName)==1)
             {
-                strcpy(employeeAuxiliar.lastName,list[i].lastName);
-                strcpy(list[i].lastName,list[j].lastName);
-                strcpy(list[j].lastName,employeeAuxiliar.lastName);
+                employeeAuxiliar=list[i];
+                list[i]=list[j];
+                list[j]=employeeAuxiliar;
 
                 resultado=0;
             }else
             {
-                if(stricmp(list[i].lastName,list[j].lastName)==0)
+                if(stricmp(list[i].lastName,list[j].lastName)==0 && list[i].sector>list[j].sector)
                 {
-                    if(list[i].sector<list[j].sector)
-                    {
-                        employeeAuxiliar.sector=list[i].sector;
-                        list[i].sector=list[j].sector;
-                        list[j].sector=employeeAuxiliar.sector;
+                    employeeAuxiliar=list[i];
+                    list[i]=list[j];
+                    list[j]=employeeAuxiliar;
 
-                        resultado=0;
-                    }
+                    resultado=0;
                 }
             }
+
         }
     }
     return resultado;
@@ -446,23 +441,20 @@ int ordenarAlfabeticamenteZaA(eEmployee list[],int len)
         {
             if(stricmp(list[i].lastName,list[j].lastName)==-1)
             {
-                strcpy(employeeAuxiliar.lastName,list[i].lastName);
-                strcpy(list[i].lastName,list[j].lastName);
-                strcpy(list[j].lastName,employeeAuxiliar.lastName);
+                employeeAuxiliar=list[i];
+                list[i]=list[j];
+                list[j]=employeeAuxiliar;
 
                 resultado=0;
             }else
             {
-                if(stricmp(list[i].lastName,list[j].lastName)==0)
+                if(stricmp(list[i].lastName,list[j].lastName)==0 && list[i].sector<list[j].sector)
                 {
-                    if(list[i].sector<list[j].sector)
-                    {
-                        employeeAuxiliar.sector=list[i].sector;
-                        list[i].sector=list[j].sector;
-                        list[j].sector=employeeAuxiliar.sector;
+                    employeeAuxiliar=list[i];
+                    list[i]=list[j];
+                    list[j]=employeeAuxiliar;
 
-                        resultado=0;
-                    }
+                    resultado=0;
                 }
             }
         }
@@ -515,8 +507,8 @@ void pedirIdModificar(eEmployee list[],int len)
                 printf("name: %s\n",list[i].name);*/
 
 
-                printf("ingrese nombre: ");
-                scanf("%s",&aux.name);
+                //printf("ingrese nombre: ");
+                //scanf("%s",&aux.name);
                 //strcpy(aux.name, nombre);
                 break;
 
@@ -606,8 +598,10 @@ int mostrarMenuCase3()
     return id;
 }
 
-void hacerLaLogicaDelCase3(eEmployee list[],int len,int id,int flag)
+void hacerLaLogicaDelCase3(eEmployee list[],int len,int flag)
 {
+    int id;
+
     if(flag==1)
     {
         id=mostrarMenuCase3();
@@ -625,17 +619,17 @@ int mostrarMenuCase4Punto1()
 {
     int opcion;
 
-    printf("\nIngrese cero(0), para que se ordene el enlistado alfabeticamente de la A a la Z");
-    printf("\nIngrese uno(1), para que se ordene el enlistado alfabeticamente de la Z a la A");
+    printf("\n   Ingrese cero(0), para que se ordene el enlistado alfabeticamente de la A a la Z");
+    printf("\n   Ingrese uno(1), para que se ordene el enlistado alfabeticamente de la Z a la A\n");
 
     do
     {
-        printf("\nIngrese aqui: ");
+        printf("\n   Ingrese aqui: ");
         scanf("%d",&opcion);
 
         if(opcion<0 || opcion>1)
         {
-            printf("Error! Opcion invalida!");
+            printf("\n   Error! Opcion invalida!");
         }
     }
     while(opcion<0 || opcion>1);
@@ -653,9 +647,9 @@ void mostrarMenuCase4Punto2(eEmployee list[],int len)
     promedioSalarios=promediarLosSalarios(list,len,totalSalarios);
     cantidadEmpleadosSuperiorSalario=calcularLosSalariosSuperioresAlPromedio(list,len,promedioSalarios);
 
-    printf("\nEl total de los salarios es: %.2f",totalSalarios);
-    printf("\nEl promedio de los salarios es: %.2f",promedioSalarios);
-    printf("\nLa cantidad de empleados que superan el promedio es: %d\n\n",cantidadEmpleadosSuperiorSalario);
+    printf("\n   2. El total de los salarios es: %.2f",totalSalarios);
+    printf("\n      El promedio de los salarios es: %.2f",promedioSalarios);
+    printf("\n      La cantidad de empleados que superan el promedio es: %d\n\n",cantidadEmpleadosSuperiorSalario);
 }
 
 float acumularLosSalarios(eEmployee list[],int len)
@@ -718,6 +712,24 @@ int calcularLosSalariosSuperioresAlPromedio(eEmployee list[],int len,float prome
     cantidadSalariosSuperiores=contador;
 
     return cantidadSalariosSuperiores;
+}
+
+void hacerLaLogicaDelCase4(eEmployee list[],int len,int flag)
+{
+    int order;
+
+    if(flag==1)
+    {
+        order=mostrarMenuCase4Punto1();
+        sortEmployees(list,len,order);
+        printEmployees(list,len);
+
+        mostrarMenuCase4Punto2(list,len);
+    }
+    else
+    {
+        printf("\nError! Se debe realizar la carga de algun empleado para poder usar esta opcion!\n\n");
+    }
 }
 
 

@@ -49,6 +49,7 @@ int ordenarAlfabeticamenteAaZ(eEmployee list[],int len);
 int ordenarAlfabeticamenteZaA(eEmployee list[],int len);
 
 /**--------------------------------------------------------------------------------------*/
+//case 2
 
 void setAny(eEmployee list[],int len);
 
@@ -65,12 +66,14 @@ float editSalary(float salary);
 int editSector(int sector);
 
 /**-----------------------------------------------------------------------------------------*/
+//case 3
 
 int mostrarMenuCase3();
 
-void hacerLaLogicaDelCase3(eEmployee list[],int len,int id,int flag);
+void hacerLaLogicaDelCase3(eEmployee list[],int len,int flag);
 
 /**------------------------------------------------------------------------------------------*/
+//Case 4
 
 int mostrarMenuCase4Punto1();
 
@@ -81,6 +84,8 @@ float acumularLosSalarios(eEmployee list[],int len);
 float promediarLosSalarios(eEmployee list[],int len,float totalSalarios);
 
 int calcularLosSalariosSuperioresAlPromedio(eEmployee list[],int len,float promedio);
+
+void hacerLaLogicaDelCase4(eEmployee list[],int len,int flag);
 
 
 

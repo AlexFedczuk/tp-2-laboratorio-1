@@ -13,8 +13,6 @@ int main()
     int bandera;
     int resultInitEmployees;
     int contador;
-    int idIngresado;
-    int opcionMenuCase4;
 
     bandera=0;
     contador=1;
@@ -52,22 +50,11 @@ int main()
                 break;
 
             case 3:
-                hacerLaLogicaDelCase3(employee,TAM,idIngresado,bandera);
+                hacerLaLogicaDelCase3(employee,TAM,bandera);
                 break;
 
             case 4:
-                if(bandera==1)
-                {
-                    opcionMenuCase4=mostrarMenuCase4Punto1();
-                    sortEmployees(employee,TAM,opcionMenuCase4);
-                    printEmployees(employee,TAM);
-
-                    mostrarMenuCase4Punto2(employee,TAM);
-                }
-                else
-                {
-                    printf("\nError! Se debe realizar la carga de algun empleado para poder usar esta opcion!\n\n");
-                }
+                hacerLaLogicaDelCase4(employee,TAM,bandera);
                 break;
 
             default:
